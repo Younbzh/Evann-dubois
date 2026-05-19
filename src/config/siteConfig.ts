@@ -1,7 +1,7 @@
 export const siteConfig = {
   businessName: "Yann Berthelot",
   tagline: "Coach en Neuro-Nutrition",
-  description: "Coach en Neuro-Nutrition en formation certifiante à l'École 5.3 (Qualiopi). Accompagnement personnalisé pour retrouver énergie, équilibre et bien-être grâce à la méthode des 5 Facteurs Vivants.",
+  description: "Coach en Neuro-Nutrition en formation certifiante à l'École 5.3 (Qualiopi). Accompagnement personnalisé pour retrouver énergie, équilibre et bien-être grâce à la méthode des 5 Facteurs du Vivant.",
 
   contact: {
     phone: "06 63 00 41 27",
@@ -72,13 +72,13 @@ export const siteConfig = {
 
   hero: {
     title: "Retrouvez l'énergie, la légèreté et le calme que vous méritez",
-    subtitle: "Vous vous sentez épuisé(e), stressé(e) ou votre poids résiste malgré vos efforts ? Je vous accompagne avec la méthode des 5 Facteurs Vivants pour retrouver un équilibre durable — sans régime frustrant.",
+    subtitle: "Vous vous sentez épuisé(e), stressé(e) ou votre poids résiste malgré vos efforts ? Je vous accompagne avec la méthode des 5 Facteurs du Vivant pour retrouver un équilibre durable — sans régime frustrant.",
     cta: {
       primary: "Premier entretien gratuit",
       secondary: "Découvrir la méthode"
     },
     features: [
-      "Méthode des 5 Facteurs Vivants",
+      "Méthode des 5 Facteurs du Vivant",
       "Formation certifiée Qualiopi",
       "Accompagnement personnalisé"
     ]
@@ -88,9 +88,9 @@ export const siteConfig = {
     title: "Yann Berthelot – Coach en Neuro-Nutrition",
     subtitle: "Je vous accompagne à transformer votre relation à l'alimentation et à votre corps",
     content: [
-      "Je suis Yann Berthelot, Coach en Neuro-Nutrition en formation certifiante auprès de l'École 5.3 — organisme certifié Qualiopi, reconnu par l'État — basée sur la méthode du Dr Yann Rougier, pionnier en neurosciences appliquées à la nutrition.",
+      "Je suis Yann Berthelot, Coach en Neuro-Nutrition en formation certifiante auprès de l'École 5.3 — organisme certifié Qualiopi, reconnu par l'État — basée sur la méthode des 5 Facteurs du Vivant du Dr Yann Rougier.",
       "La neuro-nutrition, c'est comprendre comment votre cerveau, vos émotions et votre mode de vie influencent directement vos comportements alimentaires — et comment agir sur les bons leviers pour retrouver votre équilibre naturel.",
-      "Mon approche est globale : je ne me contente pas de vous donner un plan alimentaire. Nous travaillons ensemble sur les 5 Facteurs Vivants qui gouvernent votre santé, pour des résultats que vous ressentez vraiment et qui durent."
+      "Mon approche est globale : je ne me contente pas de vous donner un plan alimentaire. Nous travaillons ensemble sur les 5 Facteurs du Vivant qui gouvernent votre santé, pour des résultats que vous ressentez vraiment et qui durent."
     ],
     values: [
       {
@@ -111,14 +111,14 @@ export const siteConfig = {
       }
     ],
     stats: [
-      { number: "5", label: "facteurs vivants" },
+      { number: "5", label: "facteurs du vivant" },
       { number: "Qualiopi", label: "formation certifiée" },
       { number: "100%", label: "personnalisé" }
     ]
   },
 
   services: {
-    title: "La Méthode des 5 Facteurs Vivants",
+    title: "La Méthode des 5 Facteurs du Vivant",
     subtitle: "Une approche globale qui agit sur toutes les dimensions de votre santé — pas seulement sur ce que vous mangez.",
     list: [
       {
@@ -190,7 +190,7 @@ export const siteConfig = {
       },
       {
         title: "Méthode Dr Yann Rougier",
-        description: "La méthode des 5 Facteurs Vivants est fondée sur les dernières avancées en neurosciences et nutrition fonctionnelle — pas sur des modes passagères.",
+        description: "La méthode des 5 Facteurs du Vivant est fondée sur les dernières avancées en neurosciences et nutrition fonctionnelle — pas sur des modes passagères.",
         icon: "CheckCircle"
       },
       {
@@ -258,7 +258,7 @@ export const siteConfig = {
         answer: "Oui, je propose des séances en visioconférence (Zoom, Google Meet) qui fonctionnent exactement comme une séance en présentiel. C'est pratique, flexible, et tout aussi efficace."
       },
       {
-        question: "En quoi consiste la méthode des 5 Facteurs Vivants ?",
+        question: "En quoi consiste la méthode des 5 Facteurs du Vivant ?",
         answer: "La méthode du Dr Yann Rougier agit simultanément sur 5 piliers de votre santé : la Nutrition, la Respiration, la Gestion des Émotions, la Détox et la Relaxation. Cette approche globale permet des résultats plus profonds et durables que les approches alimentaires seules."
       },
       {
@@ -276,11 +276,11 @@ export const siteConfig = {
 
   seo: {
     title: "Yann Berthelot – Coach en Neuro-Nutrition | Bretagne & Visioconférence",
-    description: "Coach en Neuro-Nutrition en formation certifiante à l'École 5.3 (Qualiopi). Accompagnement personnalisé pour retrouver énergie, équilibre et bien-être grâce à la méthode des 5 Facteurs Vivants. Bretagne & visioconférence. ☎ 06 63 00 41 27",
+    description: "Coach en Neuro-Nutrition en formation certifiante à l'École 5.3 (Qualiopi). Accompagnement personnalisé pour retrouver énergie, équilibre et bien-être grâce à la méthode des 5 Facteurs du Vivant. Bretagne & visioconférence. ☎ 06 63 00 41 27",
     keywords: [
       "coach neuro-nutrition Bretagne",
       "neuro-nutrition",
-      "5 facteurs vivants",
+      "5 facteurs du vivant",
       "coach nutrition",
       "fatigue chronique alimentation",
       "perte de poids naturelle",

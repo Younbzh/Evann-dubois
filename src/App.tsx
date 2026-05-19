@@ -130,7 +130,7 @@ export default function App() {
               <p className="text-lg text-gray-600 leading-relaxed mb-8 max-w-lg">
                 Vous êtes épuisé(e), stressé(e) ou votre poids résiste malgré vos efforts ?
                 Je vous accompagne avec la méthode des{' '}
-                <strong className="text-[#1C3424]">5 Facteurs Vivants</strong>{' '}
+                <strong className="text-[#1C3424]">5 Facteurs du Vivant</strong>{' '}
                 pour retrouver un équilibre durable — sans régime frustrant.
               </p>
 
@@ -165,7 +165,7 @@ export default function App() {
                 <div className="absolute -inset-3 bg-[#E8F0EA] rounded-3xl -rotate-2" />
                 <img
                   src="/1000009306.jpg"
-                  alt="Les 5 Facteurs Vivants – Méthode Dr Yann Rougier"
+                  alt="Les 5 Facteurs du Vivant – Méthode Dr Yann Rougier"
                   className="relative w-full rounded-2xl shadow-2xl"
                 />
                 {/* Badge téléphone */}
@@ -510,7 +510,7 @@ export default function App() {
                 </div>
               </div>
               <p className="text-gray-400 text-sm leading-relaxed">
-                Retrouvez énergie, équilibre et bien-être grâce à la méthode des 5 Facteurs Vivants.
+                Retrouvez énergie, équilibre et bien-être grâce à la méthode des 5 Facteurs du Vivant.
               </p>
             </div>
 
