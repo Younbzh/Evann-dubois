@@ -241,8 +241,8 @@ export const siteConfig = {
     subtitle: "Tout ce que vous devez savoir avant de commencer",
     questions: [
       {
-        question: "Quelle est la différence entre un coach en neuro-nutrition et un diététicien ?",
-        answer: "Un diététicien est un professionnel de santé réglementé qui intervient dans un cadre médical. Un coach en neuro-nutrition travaille sur les comportements alimentaires, les émotions, le stress, le sommeil et la nutrition fonctionnelle pour accompagner des personnes souhaitant améliorer leur bien-être global. Les deux approches sont complémentaires."
+        question: "Quelle est la différence entre ce que vous faites et un diététicien ?",
+        answer: "Un diététicien est un professionnel de santé réglementé qui intervient dans un cadre médical. Moi, je travaille sur les comportements alimentaires, les émotions, le stress, le sommeil et la nutrition fonctionnelle, pour vous aider à retrouver un équilibre durable dans votre quotidien. Les deux approches sont complémentaires."
       },
       {
         question: "Pour quels problèmes pouvez-vous m'aider ?",
@@ -270,7 +270,7 @@ export const siteConfig = {
       },
       {
         question: "Puis-je vous contacter avant de prendre rendez-vous ?",
-        answer: "Bien sûr ! N'hésitez pas à m'appeler ou à m'envoyer un message. Je vous répondrai dans les 24 heures. Le premier échange est gratuit, c'est l'occasion idéale pour voir si mon accompagnement est adapté à votre situation."
+        answer: "Bien sûr ! N'hésitez pas à m'appeler ou à m'envoyer un message. Je lis tout moi-même et je réponds personnellement. Le premier échange est gratuit, c'est l'occasion idéale pour voir si mon accompagnement est fait pour vous."
       }
     ]
   },
