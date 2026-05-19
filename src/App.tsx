@@ -442,7 +442,7 @@ export default function App() {
             Prêt(e) à retrouver votre équilibre ?
           </h2>
           <p className="text-white/60 text-lg mb-8">
-            Appel découverte gratuit · Loudéac ou visioconférence · Réponse sous 24h
+            Appel découverte gratuit · Loudéac ou visioconférence · Je vous réponds moi-même, sous 24h
           </p>
           <div className="flex flex-wrap gap-4 justify-center">
             <a

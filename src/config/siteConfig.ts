@@ -277,7 +277,7 @@ export const siteConfig = {
 
   finalCTA: {
     title: "Prêt(e) à retrouver votre équilibre ?",
-    subtitle: "Appel découverte gratuit et sans engagement · Réponse sous 24h",
+    subtitle: "Appel découverte gratuit et sans engagement · Je vous réponds moi-même, sous 24h",
     buttonText: "Prendre rendez-vous"
   },
 
