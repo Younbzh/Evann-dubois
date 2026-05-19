@@ -1,11 +1,41 @@
 import React, { useState, useEffect } from 'react';
 import {
   Apple, Wind, Heart, Droplets, Moon,
-  Award, CheckCircle, Users, Wrench, MapPin, Euro,
-  Phone, MessageCircle, MapPinned, Clock, ChevronDown, Menu, X, Check,
-  GraduationCap, Leaf, BatteryLow, Scale, UtensilsCrossed, Coffee, Flame, Brain
+  Award, CheckCircle, Users, MapPin,
+  Phone, MessageCircle, Clock, ChevronDown, Menu, X, Check,
+  GraduationCap, Leaf, BatteryLow, Scale, UtensilsCrossed, Coffee, Flame, Brain,
+  ArrowRight
 } from 'lucide-react';
 import { siteConfig } from './config/siteConfig';
+
+const ServiceIcon = ({ name }: { name: string }) => {
+  if (name === 'Apple') return <Apple className="w-5 h-5" />;
+  if (name === 'Wind') return <Wind className="w-5 h-5" />;
+  if (name === 'Heart') return <Heart className="w-5 h-5" />;
+  if (name === 'Droplets') return <Droplets className="w-5 h-5" />;
+  if (name === 'Moon') return <Moon className="w-5 h-5" />;
+  return null;
+};
+
+const PainIcon = ({ name }: { name: string }) => {
+  if (name === 'BatteryLow') return <BatteryLow className="w-5 h-5" />;
+  if (name === 'Scale') return <Scale className="w-5 h-5" />;
+  if (name === 'UtensilsCrossed') return <UtensilsCrossed className="w-5 h-5" />;
+  if (name === 'Coffee') return <Coffee className="w-5 h-5" />;
+  if (name === 'Flame') return <Flame className="w-5 h-5" />;
+  if (name === 'Brain') return <Brain className="w-5 h-5" />;
+  return null;
+};
+
+const WhyIcon = ({ name }: { name: string }) => {
+  if (name === 'Award') return <Award className="w-5 h-5 text-[#C4813A]" />;
+  if (name === 'CheckCircle') return <CheckCircle className="w-5 h-5 text-[#C4813A]" />;
+  if (name === 'Users') return <Users className="w-5 h-5 text-[#C4813A]" />;
+  if (name === 'Wrench') return <Check className="w-5 h-5 text-[#C4813A]" />;
+  if (name === 'MapPin') return <MapPin className="w-5 h-5 text-[#C4813A]" />;
+  if (name === 'Euro') return <GraduationCap className="w-5 h-5 text-[#C4813A]" />;
+  return null;
+};
 
 export default function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -13,188 +43,170 @@ export default function App() {
   const [activeAccordion, setActiveAccordion] = useState<number | null>(null);
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 50);
+    const handleScroll = () => setScrolled(window.scrollY > 40);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const scrollToSection = (id: string) => {
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-      setIsMenuOpen(false);
-    }
+  const go = (id: string) => {
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+    setIsMenuOpen(false);
   };
 
   return (
-    <div className="min-h-screen bg-[#FAF5EC]">
+    <div className="min-h-screen bg-white">
 
-      {/* Navigation */}
+      {/* ── Nav ───────────────────────────────────────── */}
       <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-        scrolled ? 'bg-white shadow-lg' : 'bg-white/95 backdrop-blur-sm shadow-sm'
+        scrolled
+          ? 'bg-white shadow-sm border-b border-gray-100'
+          : 'bg-white/90 backdrop-blur-md'
       }`}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-20">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="flex justify-between items-center py-4">
 
-            {/* Logo texte */}
-            <div className="flex items-center space-x-3">
-              <div className="w-10 h-10 bg-gradient-to-br from-[#1C3424] to-[#2E5541] rounded-lg flex items-center justify-center flex-shrink-0">
-                <Leaf className="w-5 h-5 text-[#C4813A]" />
+            <div className="flex items-center gap-3">
+              <div className="w-9 h-9 rounded-xl bg-[#1C3424] flex items-center justify-center flex-shrink-0">
+                <Leaf className="w-4 h-4 text-[#C4813A]" />
               </div>
               <div>
-                <p className="font-bold text-[#1C3424] text-base leading-tight">Yann Berthelot</p>
-                <p className="text-xs text-[#C4813A] font-semibold tracking-wide">Coach en Neuro-Nutrition</p>
+                <p className="font-bold text-[#1C3424] text-sm leading-tight">Yann Berthelot</p>
+                <p className="text-[10px] text-[#C4813A] font-bold uppercase tracking-widest">Coach en Neuro-Nutrition</p>
               </div>
             </div>
 
-            {/* Desktop Navigation */}
-            <div className="hidden md:flex items-center space-x-8">
-              <button onClick={() => scrollToSection('about')} className="text-gray-700 hover:text-[#C4813A] transition-colors font-medium">
-                Mon approche
-              </button>
-              <button onClick={() => scrollToSection('services')} className="text-gray-700 hover:text-[#C4813A] transition-colors font-medium">
-                Les 5 Facteurs
-              </button>
-              <button onClick={() => scrollToSection('faq')} className="text-gray-700 hover:text-[#C4813A] transition-colors font-medium">
-                FAQ
-              </button>
+            <div className="hidden md:flex items-center gap-8">
+              <button onClick={() => go('about')} className="text-sm text-gray-600 hover:text-[#1C3424] font-medium transition-colors">Mon approche</button>
+              <button onClick={() => go('services')} className="text-sm text-gray-600 hover:text-[#1C3424] font-medium transition-colors">Les 5 Facteurs</button>
+              <button onClick={() => go('faq')} className="text-sm text-gray-600 hover:text-[#1C3424] font-medium transition-colors">FAQ</button>
               <button
-                onClick={() => scrollToSection('contact')}
-                className="bg-[#C4813A] text-white px-6 py-2.5 rounded-lg hover:bg-[#A8702A] transition-all font-semibold shadow-md hover:shadow-lg"
+                onClick={() => go('contact')}
+                className="bg-[#C4813A] text-white text-sm px-5 py-2.5 rounded-full font-bold hover:bg-[#A8702A] transition-all shadow-md"
               >
-                Prendre rendez-vous
+                Entretien gratuit
               </button>
             </div>
 
-            {/* Mobile Menu Button */}
-            <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="md:hidden text-gray-700">
+            <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="md:hidden p-2 text-gray-700">
               {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
           </div>
 
-          {/* Mobile Menu */}
           {isMenuOpen && (
-            <div className="md:hidden py-4 border-t">
-              <div className="flex flex-col space-y-3">
-                <button onClick={() => scrollToSection('about')} className="text-left py-2 text-gray-700 hover:text-[#C4813A]">
-                  Mon approche
-                </button>
-                <button onClick={() => scrollToSection('services')} className="text-left py-2 text-gray-700 hover:text-[#C4813A]">
-                  Les 5 Facteurs
-                </button>
-                <button onClick={() => scrollToSection('faq')} className="text-left py-2 text-gray-700 hover:text-[#C4813A]">
-                  FAQ
-                </button>
-                <button onClick={() => scrollToSection('contact')} className="text-left py-2 bg-[#C4813A] text-white px-4 rounded-lg font-semibold">
-                  Prendre rendez-vous
-                </button>
-              </div>
+            <div className="md:hidden pb-4 border-t border-gray-100 pt-3 flex flex-col gap-2">
+              <button onClick={() => go('about')} className="text-left py-2 px-2 text-gray-700 font-medium">Mon approche</button>
+              <button onClick={() => go('services')} className="text-left py-2 px-2 text-gray-700 font-medium">Les 5 Facteurs</button>
+              <button onClick={() => go('faq')} className="text-left py-2 px-2 text-gray-700 font-medium">FAQ</button>
+              <button onClick={() => go('contact')} className="mt-1 bg-[#C4813A] text-white px-5 py-3 rounded-full font-bold text-sm">
+                Entretien gratuit
+              </button>
             </div>
           )}
         </div>
       </nav>
 
-      {/* Hero Section */}
-      <section className="pt-32 pb-20 bg-[#1C3424] relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-96 h-96 bg-[#C4813A]/8 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-0 left-0 w-96 h-96 bg-[#C4813A]/5 rounded-full blur-3xl"></div>
+      {/* ── Hero ──────────────────────────────────────── */}
+      <section className="pt-24 pb-24 bg-[#FAF5EC] relative overflow-hidden">
+        {/* Blobs organiques */}
+        <div className="absolute top-0 right-0 w-[700px] h-[700px] bg-[#E8F0EA] rounded-full -translate-y-1/3 translate-x-1/3 blur-3xl opacity-60 pointer-events-none" />
+        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-[#F5E8D8] rounded-full translate-y-1/3 -translate-x-1/4 blur-3xl opacity-50 pointer-events-none" />
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
+        <div className="max-w-6xl mx-auto px-6 relative z-10">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
 
-            {/* Left column */}
+            {/* Texte gauche */}
             <div>
-              <div className="inline-flex items-center bg-[#C4813A]/20 text-[#C4813A] px-4 py-2 rounded-full text-sm font-semibold mb-6">
-                <GraduationCap className="w-4 h-4 mr-2" />
+              <div className="inline-flex items-center gap-2 bg-[#1C3424]/8 text-[#1C3424] px-4 py-2 rounded-full text-xs font-bold uppercase tracking-widest mb-7">
+                <GraduationCap className="w-3.5 h-3.5 text-[#C4813A]" />
                 Formation certifiée École 5.3 · Qualiopi
               </div>
-              <h2 className="text-5xl md:text-6xl font-bold text-white leading-tight mb-6">
-                {siteConfig.hero.title}
-              </h2>
-              <p className="text-xl text-white/75 mb-8 leading-relaxed">
-                {siteConfig.hero.subtitle}
+
+              <h1 className="text-5xl lg:text-[3.6rem] font-bold text-[#1C3424] leading-[1.1] mb-6">
+                Retrouvez l'énergie et{' '}
+                <em className="text-[#C4813A] not-italic">l'équilibre</em>{' '}
+                que vous méritez
+              </h1>
+
+              <p className="text-lg text-gray-600 leading-relaxed mb-8 max-w-lg">
+                Vous êtes épuisé(e), stressé(e) ou votre poids résiste malgré vos efforts ?
+                Je vous accompagne avec la méthode des{' '}
+                <strong className="text-[#1C3424]">5 Facteurs Vivants</strong>{' '}
+                pour retrouver un équilibre durable — sans régime frustrant.
               </p>
 
-              {/* Stats row */}
-              <div className="flex gap-8 mb-8">
-                {siteConfig.about.stats.map((stat, index) => (
-                  <div key={index} className="text-center">
-                    <div className="text-3xl font-bold text-[#C4813A]">{stat.number}</div>
-                    <div className="text-xs text-white/55 font-medium mt-1">{stat.label}</div>
-                  </div>
-                ))}
-              </div>
-
-              <div className="flex flex-wrap gap-3 mb-10">
-                {siteConfig.hero.features.map((feature, index) => (
-                  <div key={index} className="flex items-center bg-white/10 px-4 py-2 rounded-lg">
-                    <Check className="w-4 h-4 text-[#C4813A] mr-2 flex-shrink-0" />
-                    <span className="font-medium text-white/90 text-sm">{feature}</span>
-                  </div>
-                ))}
-              </div>
-
-              <div className="flex flex-wrap gap-4">
+              <div className="flex flex-wrap gap-3 mb-8">
                 <button
-                  onClick={() => scrollToSection('contact')}
-                  className="bg-[#C4813A] text-white px-8 py-4 rounded-lg hover:bg-[#A8702A] transition-all font-bold text-lg shadow-lg hover:shadow-xl hover:scale-105"
+                  onClick={() => go('contact')}
+                  className="bg-[#1C3424] text-white px-7 py-3.5 rounded-full font-bold text-sm hover:bg-[#2E5541] transition-all shadow-lg hover:shadow-xl"
                 >
-                  {siteConfig.hero.cta.primary}
+                  Premier entretien gratuit
                 </button>
                 <button
-                  onClick={() => scrollToSection('services')}
-                  className="bg-white/10 backdrop-blur-sm text-white px-8 py-4 rounded-lg hover:bg-white/20 transition-all font-bold text-lg border-2 border-white/25"
+                  onClick={() => go('services')}
+                  className="text-[#1C3424] px-7 py-3.5 rounded-full font-bold text-sm border-2 border-[#1C3424]/20 hover:border-[#C4813A] hover:text-[#C4813A] transition-all"
                 >
-                  {siteConfig.hero.cta.secondary}
+                  Découvrir la méthode
                 </button>
+              </div>
+
+              <div className="flex flex-wrap gap-5 text-sm text-gray-500">
+                {['Sans engagement', 'Bretagne & visio', 'Réponse sous 24h'].map(f => (
+                  <span key={f} className="flex items-center gap-1.5">
+                    <Check className="w-4 h-4 text-[#C4813A]" />
+                    {f}
+                  </span>
+                ))}
               </div>
             </div>
 
-            {/* Right column – carte + téléphone */}
-            <div className="flex flex-col items-center">
-              <img
-                src="/1000009307.jpg"
-                alt="Yann Berthelot – Coach en Neuro-Nutrition"
-                className="w-full max-w-sm rounded-2xl shadow-2xl"
-              />
-              <a
-                href={`tel:${siteConfig.contact.phone.replace(/\s/g, '')}`}
-                className="mt-6 flex items-center gap-3 bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl px-6 py-4 w-full max-w-sm hover:bg-white/20 transition-colors group"
-              >
-                <Phone className="w-5 h-5 text-[#C4813A] flex-shrink-0" />
-                <span className="text-white font-semibold text-lg group-hover:text-[#C4813A] transition-colors">
-                  {siteConfig.contact.phone}
-                </span>
-              </a>
+            {/* Image droite */}
+            <div className="flex justify-center lg:justify-end">
+              <div className="relative w-full max-w-md">
+                <div className="absolute -inset-3 bg-[#E8F0EA] rounded-3xl -rotate-2" />
+                <img
+                  src="/1000009306.jpg"
+                  alt="Les 5 Facteurs Vivants – Méthode Dr Yann Rougier"
+                  className="relative w-full rounded-2xl shadow-2xl"
+                />
+                {/* Badge téléphone */}
+                <a
+                  href={`tel:${siteConfig.contact.phone.replace(/\s/g, '')}`}
+                  className="absolute -bottom-5 left-1/2 -translate-x-1/2 flex items-center gap-3 bg-white rounded-2xl px-5 py-3 shadow-xl border border-[#E8E0D4] whitespace-nowrap hover:shadow-2xl transition-shadow"
+                >
+                  <div className="w-8 h-8 bg-[#1C3424] rounded-lg flex items-center justify-center flex-shrink-0">
+                    <Phone className="w-4 h-4 text-white" />
+                  </div>
+                  <span className="font-bold text-[#1C3424] text-base">{siteConfig.contact.phone}</span>
+                </a>
+              </div>
             </div>
 
           </div>
         </div>
       </section>
 
-      {/* Pain Points Section */}
+      {/* ── Pain Points ────────────────────────────────── */}
       <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-6xl mx-auto px-6">
+
           <div className="text-center mb-14">
-            <h2 className="text-4xl md:text-5xl font-bold text-[#1C3424] mb-4">
+            <h2 className="text-4xl md:text-5xl font-bold text-[#1C3424] mb-3">
               {siteConfig.painPoints.title}
             </h2>
-            <p className="text-lg text-gray-500 italic">Cochez mentalement ce qui vous correspond.</p>
+            <p className="text-gray-400 italic">Cochez mentalement ce qui vous correspond.</p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto mb-14">
-            {siteConfig.painPoints.items.map((item, index) => (
-              <div key={index} className="flex gap-4 p-6 rounded-2xl border-2 border-[#FAF5EC] hover:border-[#C4813A]/30 hover:bg-[#FAF5EC] transition-all group">
-                <div className="flex-shrink-0 w-11 h-11 rounded-xl bg-[#C4813A]/10 flex items-center justify-center group-hover:bg-[#C4813A]/20 transition-colors">
-                  {item.icon === 'BatteryLow' && <BatteryLow className="w-5 h-5 text-[#C4813A]" />}
-                  {item.icon === 'Scale' && <Scale className="w-5 h-5 text-[#C4813A]" />}
-                  {item.icon === 'UtensilsCrossed' && <UtensilsCrossed className="w-5 h-5 text-[#C4813A]" />}
-                  {item.icon === 'Coffee' && <Coffee className="w-5 h-5 text-[#C4813A]" />}
-                  {item.icon === 'Flame' && <Flame className="w-5 h-5 text-[#C4813A]" />}
-                  {item.icon === 'Brain' && <Brain className="w-5 h-5 text-[#C4813A]" />}
+          <div className="grid md:grid-cols-2 gap-3 max-w-4xl mx-auto mb-14">
+            {siteConfig.painPoints.items.map((item, i) => (
+              <div
+                key={i}
+                className="flex items-start gap-4 p-5 rounded-2xl hover:bg-[#FAF5EC] transition-colors group cursor-default"
+              >
+                <div className="flex-shrink-0 mt-0.5 w-10 h-10 rounded-xl bg-[#FAF5EC] group-hover:bg-[#C4813A]/15 flex items-center justify-center transition-colors">
+                  <span className="text-[#C4813A]"><PainIcon name={item.icon} /></span>
                 </div>
                 <div>
-                  <p className="font-bold text-[#1C3424] mb-1 leading-snug">{item.text}</p>
+                  <p className="font-bold text-[#1C3424] mb-0.5 leading-snug">{item.text}</p>
                   <p className="text-sm text-gray-500 leading-relaxed">{item.detail}</p>
                 </div>
               </div>
@@ -203,101 +215,124 @@ export default function App() {
 
           {/* Phrase de bascule */}
           <div className="max-w-3xl mx-auto text-center">
-            <div className="inline-block bg-[#1C3424] text-white px-8 py-5 rounded-2xl shadow-lg">
-              <p className="text-xl font-bold leading-relaxed">
-                {siteConfig.painPoints.conclusion}
-              </p>
-            </div>
-            <p className="mt-6 text-gray-600 text-lg">
-              La neuro-nutrition agit sur les <span className="font-semibold text-[#C4813A]">vraies causes</span> — pas seulement sur ce que vous mangez.
+            <blockquote className="text-2xl md:text-3xl font-bold text-[#1C3424] leading-relaxed mb-4">
+              "{siteConfig.painPoints.conclusion}"
+            </blockquote>
+            <p className="text-gray-500 text-lg mb-6">
+              La neuro-nutrition agit sur les{' '}
+              <span className="font-semibold text-[#C4813A]">vraies causes</span>{' '}
+              — pas seulement sur ce que vous mangez.
             </p>
+            <button
+              onClick={() => go('services')}
+              className="inline-flex items-center gap-2 text-[#C4813A] font-bold text-sm hover:gap-3 transition-all"
+            >
+              Voir comment ça fonctionne <ArrowRight className="w-4 h-4" />
+            </button>
           </div>
+
         </div>
       </section>
 
-      {/* About Section */}
-      <section id="about" className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-[#1C3424] mb-4">
-              {siteConfig.about.title}
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              {siteConfig.about.subtitle}
-            </p>
-          </div>
+      {/* ── About ──────────────────────────────────────── */}
+      <section id="about" className="py-20 bg-[#FAF5EC]">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="grid lg:grid-cols-2 gap-16 items-start">
 
-          <div className="grid md:grid-cols-2 gap-12 mb-16">
-            <div className="space-y-6">
-              {siteConfig.about.content.map((paragraph, index) => (
-                <p key={index} className="text-lg text-gray-700 leading-relaxed">
-                  {paragraph}
-                </p>
-              ))}
+            {/* Texte */}
+            <div>
+              <p className="text-xs font-bold uppercase tracking-widest text-[#C4813A] mb-4">Mon approche</p>
+              <h2 className="text-4xl md:text-5xl font-bold text-[#1C3424] mb-8">
+                {siteConfig.about.title}
+              </h2>
 
-              {/* Mon histoire */}
-              <div className="mt-4 border-l-4 border-[#C4813A] pl-6 py-2">
+              <div className="space-y-5 mb-8">
+                {siteConfig.about.content.map((p, i) => (
+                  <p key={i} className="text-gray-700 leading-relaxed text-lg">{p}</p>
+                ))}
+              </div>
+
+              <div className="border-l-4 border-[#C4813A] pl-6 py-1">
                 <p className="text-xs font-bold uppercase tracking-widest text-[#C4813A] mb-3">Pourquoi ce métier</p>
-                <p className="text-gray-700 leading-relaxed italic">
+                <p className="text-gray-600 leading-relaxed italic">
                   "{siteConfig.histoire}"
                 </p>
               </div>
+            </div>
 
-              {/* Carte méthode */}
-              <div className="mt-4">
+            {/* Droite : carte credential + valeurs */}
+            <div className="space-y-6 lg:pt-16">
+              <div className="relative">
+                <div className="absolute -inset-2 bg-[#1C3424]/6 rounded-3xl rotate-1" />
                 <img
-                  src="/1000009306.jpg"
-                  alt="Les 5 Facteurs Vivants – Méthode Dr Yann Rougier"
-                  className="w-full rounded-xl shadow-md"
+                  src="/1000009307.jpg"
+                  alt="Yann Berthelot – Coach en Neuro-Nutrition"
+                  className="relative w-full rounded-2xl shadow-lg"
                 />
               </div>
-            </div>
 
-            <div className="bg-gradient-to-br from-[#1C3424] to-[#2E5541] p-8 rounded-2xl text-white shadow-xl">
-              <h3 className="text-2xl font-bold mb-2">Mon engagement</h3>
-              <div className="w-12 h-1 bg-[#C4813A] rounded mb-6"></div>
-              <div className="space-y-4">
-                {siteConfig.about.values.map((value, index) => (
-                  <div key={index} className="border-l-4 border-[#C4813A]/60 pl-4">
-                    <h4 className="font-bold text-lg mb-1 text-[#C4813A]">{value.title}</h4>
-                    <p className="text-white/80">{value.description}</p>
-                  </div>
-                ))}
+              <div className="bg-white rounded-2xl p-6 shadow-sm border border-[#E8E0D4]">
+                <p className="text-xs font-bold uppercase tracking-widest text-[#C4813A] mb-4">Mon engagement</p>
+                <div className="grid grid-cols-2 gap-4">
+                  {siteConfig.about.values.map((v, i) => (
+                    <div key={i} className="flex items-start gap-2">
+                      <Check className="w-4 h-4 text-[#C4813A] mt-0.5 flex-shrink-0" />
+                      <div>
+                        <p className="font-bold text-[#1C3424] text-sm">{v.title}</p>
+                        <p className="text-xs text-gray-500 leading-snug mt-0.5">{v.description}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
+
           </div>
         </div>
       </section>
 
-      {/* Services Section – Les 5 Facteurs */}
-      <section id="services" className="py-20 bg-[#FAF5EC]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
+      {/* ── 5 Facteurs ─────────────────────────────────── */}
+      <section id="services" className="py-20 bg-white">
+        <div className="max-w-6xl mx-auto px-6">
+
+          <div className="text-center mb-14">
+            <p className="text-xs font-bold uppercase tracking-widest text-[#C4813A] mb-3">La méthode</p>
             <h2 className="text-4xl md:text-5xl font-bold text-[#1C3424] mb-4">
               {siteConfig.services.title}
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-lg text-gray-500 max-w-2xl mx-auto">
               {siteConfig.services.subtitle}
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            {siteConfig.services.list.map((service, index) => (
-              <div key={index} className="bg-white rounded-xl p-8 shadow-lg hover:shadow-xl transition-shadow">
-                <div className="w-16 h-16 bg-gradient-to-br from-[#C4813A] to-[#A8702A] rounded-xl flex items-center justify-center mb-6 shadow-md">
-                  {service.icon === 'Apple' && <Apple className="w-8 h-8 text-white" />}
-                  {service.icon === 'Wind' && <Wind className="w-8 h-8 text-white" />}
-                  {service.icon === 'Heart' && <Heart className="w-8 h-8 text-white" />}
-                  {service.icon === 'Droplets' && <Droplets className="w-8 h-8 text-white" />}
-                  {service.icon === 'Moon' && <Moon className="w-8 h-8 text-white" />}
+          <div className="space-y-3">
+            {siteConfig.services.list.map((service, i) => (
+              <div
+                key={i}
+                className="group grid md:grid-cols-[72px_1fr_1fr] gap-6 items-start p-7 rounded-2xl border border-gray-100 hover:border-[#C4813A]/30 hover:shadow-md transition-all bg-white"
+              >
+                {/* Numéro + icône */}
+                <div className="flex flex-row md:flex-col items-center gap-3 md:gap-2">
+                  <span className="text-5xl font-bold text-[#1C3424]/8 group-hover:text-[#C4813A]/15 transition-colors leading-none select-none">
+                    {String(i + 1).padStart(2, '0')}
+                  </span>
+                  <div className="w-10 h-10 rounded-xl bg-[#FAF5EC] group-hover:bg-[#C4813A]/10 flex items-center justify-center transition-colors flex-shrink-0">
+                    <span className="text-[#C4813A]"><ServiceIcon name={service.icon} /></span>
+                  </div>
                 </div>
-                <h3 className="text-2xl font-bold text-[#1C3424] mb-4">{service.name}</h3>
-                <p className="text-gray-600 mb-6 leading-relaxed">{service.description}</p>
-                <ul className="space-y-2">
-                  {service.features.map((feature, idx) => (
-                    <li key={idx} className="flex items-center text-gray-700">
-                      <Check className="w-5 h-5 text-[#C4813A] mr-2 flex-shrink-0" />
-                      <span>{feature}</span>
+
+                {/* Titre + description */}
+                <div>
+                  <h3 className="text-xl font-bold text-[#1C3424] mb-2">{service.name}</h3>
+                  <p className="text-gray-600 leading-relaxed">{service.description}</p>
+                </div>
+
+                {/* Points clés */}
+                <ul className="space-y-2 md:pt-1">
+                  {service.features.map((f, fi) => (
+                    <li key={fi} className="flex items-center gap-2 text-sm text-gray-600">
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#C4813A] flex-shrink-0" />
+                      {f}
                     </li>
                   ))}
                 </ul>
@@ -307,96 +342,93 @@ export default function App() {
         </div>
       </section>
 
-      {/* Why Choose Us */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
+      {/* ── Pourquoi moi ───────────────────────────────── */}
+      <section className="py-20 bg-[#FAF5EC]">
+        <div className="max-w-6xl mx-auto px-6">
+
+          <div className="text-center mb-14">
+            <p className="text-xs font-bold uppercase tracking-widest text-[#C4813A] mb-3">Pourquoi moi</p>
             <h2 className="text-4xl md:text-5xl font-bold text-[#1C3424] mb-4">
               {siteConfig.whyChooseUs.title}
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-lg text-gray-500 max-w-2xl mx-auto">
               {siteConfig.whyChooseUs.subtitle}
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {siteConfig.whyChooseUs.reasons.map((reason, index) => (
-              <div key={index} className="border-l-4 border-[#C4813A] bg-[#FAF5EC] p-6 rounded-r-xl hover:bg-white transition-colors">
-                <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 bg-[#C4813A] rounded-lg flex items-center justify-center flex-shrink-0">
-                    {reason.icon === 'Award' && <Award className="w-6 h-6 text-white" />}
-                    {reason.icon === 'CheckCircle' && <CheckCircle className="w-6 h-6 text-white" />}
-                    {reason.icon === 'Users' && <Users className="w-6 h-6 text-white" />}
-                    {reason.icon === 'Wrench' && <Wrench className="w-6 h-6 text-white" />}
-                    {reason.icon === 'MapPin' && <MapPin className="w-6 h-6 text-white" />}
-                    {reason.icon === 'Euro' && <Euro className="w-6 h-6 text-white" />}
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-bold text-[#1C3424] mb-2">{reason.title}</h3>
-                    <p className="text-gray-600 leading-relaxed">{reason.description}</p>
-                  </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+            {siteConfig.whyChooseUs.reasons.map((reason, i) => (
+              <div key={i} className="bg-white rounded-2xl p-6 border border-[#E8E0D4] hover:shadow-md transition-shadow">
+                <div className="w-10 h-10 rounded-xl bg-[#1C3424] flex items-center justify-center mb-4">
+                  <WhyIcon name={reason.icon} />
                 </div>
+                <h3 className="font-bold text-[#1C3424] text-lg mb-2">{reason.title}</h3>
+                <p className="text-gray-600 text-sm leading-relaxed">{reason.description}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Zone d'accompagnement */}
-      <section className="py-20 bg-gradient-to-br from-[#1C3424] to-[#2E5541] text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <MapPin className="w-16 h-16 mx-auto mb-6 text-[#C4813A]" />
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">
-              {siteConfig.serviceArea.title}
-            </h2>
-            <p className="text-xl text-white/80 max-w-3xl mx-auto">
-              {siteConfig.serviceArea.description}
-            </p>
-          </div>
-
-          <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 max-w-4xl mx-auto border border-white/10">
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 mb-8">
-              {siteConfig.serviceArea.cities.map((city, index) => (
-                <div key={index} className="bg-white/10 backdrop-blur-sm px-4 py-3 rounded-lg text-center font-medium border border-[#C4813A]/20">
-                  {city}
-                </div>
-              ))}
-            </div>
-            <p className="text-center text-white/75 font-medium">
-              {siteConfig.serviceArea.radius}
-            </p>
+      {/* ── Quote CTA ──────────────────────────────────── */}
+      <section className="py-16 bg-[#1C3424]">
+        <div className="max-w-4xl mx-auto px-6 text-center">
+          <h2 className="text-3xl md:text-4xl font-bold text-white leading-relaxed mb-4">
+            Prêt(e) à retrouver votre équilibre ?
+          </h2>
+          <p className="text-white/60 text-lg mb-8">
+            Premier entretien gratuit · Loudéac ou visioconférence · Réponse sous 24h
+          </p>
+          <div className="flex flex-wrap gap-4 justify-center">
+            <a
+              href={`tel:${siteConfig.contact.phone.replace(/\s/g, '')}`}
+              className="inline-flex items-center gap-3 bg-[#C4813A] text-white px-7 py-3.5 rounded-full font-bold hover:bg-[#A8702A] transition-all shadow-lg"
+            >
+              <Phone className="w-5 h-5" />
+              {siteConfig.contact.phone}
+            </a>
+            <a
+              href={siteConfig.contact.whatsapp}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-3 bg-white/10 border border-white/20 text-white px-7 py-3.5 rounded-full font-bold hover:bg-white/20 transition-all"
+            >
+              <MessageCircle className="w-5 h-5" />
+              WhatsApp
+            </a>
           </div>
         </div>
       </section>
 
-      {/* FAQ */}
+      {/* ── FAQ ────────────────────────────────────────── */}
       <section id="faq" className="py-20 bg-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-[#1C3424] mb-4">
+        <div className="max-w-3xl mx-auto px-6">
+
+          <div className="text-center mb-14">
+            <p className="text-xs font-bold uppercase tracking-widest text-[#C4813A] mb-3">FAQ</p>
+            <h2 className="text-4xl md:text-5xl font-bold text-[#1C3424] mb-3">
               {siteConfig.faq.title}
             </h2>
-            <p className="text-xl text-gray-600">
-              {siteConfig.faq.subtitle}
-            </p>
+            <p className="text-gray-500">{siteConfig.faq.subtitle}</p>
           </div>
 
-          <div className="space-y-4">
-            {siteConfig.faq.questions.map((item, index) => (
-              <div key={index} className="border-2 border-gray-200 rounded-xl overflow-hidden hover:border-[#C4813A] transition-colors">
+          <div className="divide-y divide-gray-100">
+            {siteConfig.faq.questions.map((item, i) => (
+              <div key={i}>
                 <button
-                  onClick={() => setActiveAccordion(activeAccordion === index ? null : index)}
-                  className="w-full px-6 py-5 text-left flex items-center justify-between bg-white hover:bg-[#FAF5EC] transition-colors"
+                  onClick={() => setActiveAccordion(activeAccordion === i ? null : i)}
+                  className="w-full py-5 flex items-center justify-between text-left gap-4 group"
                 >
-                  <span className="font-bold text-[#1C3424] text-lg pr-4">{item.question}</span>
+                  <span className="font-bold text-[#1C3424] text-base group-hover:text-[#C4813A] transition-colors">
+                    {item.question}
+                  </span>
                   <ChevronDown
-                    className={`w-6 h-6 text-[#C4813A] flex-shrink-0 transition-transform ${activeAccordion === index ? 'rotate-180' : ''}`}
+                    className={`w-5 h-5 text-[#C4813A] flex-shrink-0 transition-transform duration-200 ${activeAccordion === i ? 'rotate-180' : ''}`}
                   />
                 </button>
-                {activeAccordion === index && (
-                  <div className="px-6 py-5 bg-[#FAF5EC] border-t border-gray-200">
-                    <p className="text-gray-700 leading-relaxed">{item.answer}</p>
+                {activeAccordion === i && (
+                  <div className="pb-5 text-gray-600 leading-relaxed">
+                    {item.answer}
                   </div>
                 )}
               </div>
@@ -405,127 +437,76 @@ export default function App() {
         </div>
       </section>
 
-      {/* Contact Section */}
+      {/* ── Contact ────────────────────────────────────── */}
       <section id="contact" className="py-20 bg-[#FAF5EC]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
+        <div className="max-w-6xl mx-auto px-6">
+
+          <div className="text-center mb-14">
+            <p className="text-xs font-bold uppercase tracking-widest text-[#C4813A] mb-3">Contact</p>
             <h2 className="text-4xl md:text-5xl font-bold text-[#1C3424] mb-4">
               {siteConfig.finalCTA.title}
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
+            <p className="text-lg text-gray-500 max-w-xl mx-auto">
               {siteConfig.finalCTA.subtitle}
             </p>
           </div>
 
-          {/* CTA Principal */}
-          <div className="max-w-4xl mx-auto mb-16">
-            <div className="bg-gradient-to-br from-[#1C3424] to-[#2E5541] rounded-2xl p-8 md:p-12 text-white text-center shadow-2xl border border-[#C4813A]/20">
-              <h3 className="text-3xl md:text-4xl font-bold mb-3">Contactez-moi dès maintenant</h3>
-              <div className="w-16 h-1 bg-[#C4813A] rounded mx-auto mb-6"></div>
-              <p className="text-xl mb-8 text-white/80">Premier entretien gratuit et sans engagement · Réponse sous 24h</p>
-
-              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                <a
-                  href={`tel:${siteConfig.contact.phone.replace(/\s/g, '')}`}
-                  className="bg-[#C4813A] text-white px-8 py-4 rounded-lg hover:bg-[#A8702A] transition-all font-bold text-lg shadow-lg hover:shadow-xl flex items-center gap-3 w-full sm:w-auto justify-center"
-                >
-                  <Phone className="w-6 h-6" />
-                  {siteConfig.contact.phone}
-                </a>
-                <a
-                  href={siteConfig.contact.whatsapp}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="bg-white/10 backdrop-blur-sm text-white border-2 border-white/30 px-8 py-4 rounded-lg hover:bg-white/20 transition-all font-bold text-lg flex items-center gap-3 w-full sm:w-auto justify-center"
-                >
-                  <MessageCircle className="w-6 h-6" />
-                  WhatsApp
-                </a>
+          <div className="grid md:grid-cols-3 gap-5 max-w-3xl mx-auto">
+            <a
+              href={`tel:${siteConfig.contact.phone.replace(/\s/g, '')}`}
+              className="bg-[#1C3424] text-white rounded-2xl p-8 text-center hover:bg-[#2E5541] transition-colors group"
+            >
+              <div className="w-14 h-14 bg-white/10 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:bg-white/20 transition-colors">
+                <Phone className="w-7 h-7 text-[#C4813A]" />
               </div>
-            </div>
-          </div>
+              <p className="font-bold text-lg mb-1">{siteConfig.contact.phone}</p>
+              <p className="text-white/50 text-sm">Appel direct</p>
+            </a>
 
-          {/* Coordonnées détaillées */}
-          <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            {/* Téléphone */}
-            <div className="bg-white rounded-xl p-8 shadow-lg text-center hover:shadow-xl transition-shadow">
-              <div className="w-16 h-16 bg-gradient-to-br from-[#C4813A] to-[#A8702A] rounded-full flex items-center justify-center mx-auto mb-6">
-                <Phone className="w-8 h-8 text-white" />
+            <a
+              href={siteConfig.contact.whatsapp}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-white rounded-2xl p-8 text-center border border-[#E8E0D4] hover:shadow-lg transition-all group"
+            >
+              <div className="w-14 h-14 bg-[#FAF5EC] rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:bg-[#C4813A]/10 transition-colors">
+                <MessageCircle className="w-7 h-7 text-[#C4813A]" />
               </div>
-              <h3 className="text-xl font-bold text-[#1C3424] mb-4">Téléphone</h3>
+              <p className="font-bold text-[#1C3424] text-lg mb-1">WhatsApp</p>
+              <p className="text-gray-400 text-sm">Message direct</p>
+            </a>
+
+            <div className="bg-white rounded-2xl p-8 text-center border border-[#E8E0D4]">
+              <div className="w-14 h-14 bg-[#FAF5EC] rounded-2xl flex items-center justify-center mx-auto mb-4">
+                <Clock className="w-7 h-7 text-[#C4813A]" />
+              </div>
               <div className="space-y-2">
-                <a
-                  href={`tel:${siteConfig.contact.phone.replace(/\s/g, '')}`}
-                  className="block text-[#C4813A] hover:underline text-lg font-semibold"
-                >
-                  {siteConfig.contact.phone}
-                </a>
-              </div>
-              <p className="text-sm text-gray-500 mt-4">Appel direct</p>
-            </div>
-
-            {/* WhatsApp */}
-            <div className="bg-white rounded-xl p-8 shadow-lg text-center hover:shadow-xl transition-shadow">
-              <div className="w-16 h-16 bg-gradient-to-br from-[#C4813A] to-[#A8702A] rounded-full flex items-center justify-center mx-auto mb-6">
-                <MessageCircle className="w-8 h-8 text-white" />
-              </div>
-              <h3 className="text-xl font-bold text-[#1C3424] mb-4">WhatsApp</h3>
-              <a
-                href={siteConfig.contact.whatsapp}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-[#C4813A] hover:underline text-lg font-semibold"
-              >
-                {siteConfig.contact.phone}
-              </a>
-              <p className="text-sm text-gray-500 mt-4">Réponse sous 24h</p>
-            </div>
-
-            {/* Disponibilité */}
-            <div className="bg-white rounded-xl p-8 shadow-lg text-center hover:shadow-xl transition-shadow">
-              <div className="w-16 h-16 bg-gradient-to-br from-[#C4813A] to-[#A8702A] rounded-full flex items-center justify-center mx-auto mb-6">
-                <MapPinned className="w-8 h-8 text-white" />
-              </div>
-              <h3 className="text-xl font-bold text-[#1C3424] mb-4">Secteur</h3>
-              <p className="text-gray-700 font-medium">22600 Loudéac</p>
-              <p className="text-gray-700 font-medium">& visioconférence France</p>
-              <p className="text-sm text-gray-500 mt-4">Centre Bretagne</p>
-            </div>
-          </div>
-
-          {/* Horaires */}
-          <div className="max-w-2xl mx-auto mt-12">
-            <div className="bg-white rounded-xl p-8 shadow-lg">
-              <div className="flex items-center justify-center mb-6">
-                <Clock className="w-8 h-8 text-[#C4813A] mr-3" />
-                <h3 className="text-2xl font-bold text-[#1C3424]">Disponibilités</h3>
-              </div>
-              <div className="grid sm:grid-cols-3 gap-4">
-                {siteConfig.hours.details.map((item, index) => (
-                  <div key={index} className="text-center p-4 bg-[#FAF5EC] rounded-lg">
-                    <p className="font-bold text-gray-700 mb-1">{item.day}</p>
-                    <p className="text-gray-600">{item.hours}</p>
+                {siteConfig.hours.details.map((h, i) => (
+                  <div key={i} className="text-sm">
+                    <p className="font-bold text-[#1C3424]">{h.day}</p>
+                    <p className="text-gray-500">{h.hours}</p>
                   </div>
                 ))}
               </div>
             </div>
           </div>
+
         </div>
       </section>
 
-      {/* Footer */}
+      {/* ── Footer ─────────────────────────────────────── */}
       <footer className="bg-[#111D18] text-white py-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-6xl mx-auto px-6">
           <div className="grid md:grid-cols-3 gap-8 mb-8">
 
             <div>
-              <div className="flex items-center space-x-3 mb-4">
-                <div className="w-10 h-10 bg-gradient-to-br from-[#1C3424] to-[#2E5541] border border-[#C4813A]/30 rounded-lg flex items-center justify-center flex-shrink-0">
-                  <Leaf className="w-5 h-5 text-[#C4813A]" />
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-9 h-9 rounded-xl bg-[#1C3424] border border-[#C4813A]/30 flex items-center justify-center flex-shrink-0">
+                  <Leaf className="w-4 h-4 text-[#C4813A]" />
                 </div>
                 <div>
-                  <p className="font-bold text-white text-base leading-tight">Yann Berthelot</p>
-                  <p className="text-xs text-[#C4813A] font-semibold">Coach en Neuro-Nutrition</p>
+                  <p className="font-bold text-white text-sm">Yann Berthelot</p>
+                  <p className="text-[10px] text-[#C4813A] font-bold uppercase tracking-widest">Coach en Neuro-Nutrition</p>
                 </div>
               </div>
               <p className="text-gray-400 text-sm leading-relaxed">
@@ -534,31 +515,26 @@ export default function App() {
             </div>
 
             <div>
-              <h4 className="font-bold text-lg mb-4 text-[#C4813A]">Contact</h4>
+              <h4 className="font-bold text-xs uppercase tracking-widest text-[#C4813A] mb-4">Contact</h4>
               <div className="space-y-2 text-sm text-gray-400">
-                <p className="flex items-center">
-                  <Phone className="w-4 h-4 mr-2 text-[#C4813A]" />
+                <a href={`tel:${siteConfig.contact.phone.replace(/\s/g,'')}`} className="flex items-center gap-2 hover:text-white transition-colors">
+                  <Phone className="w-3.5 h-3.5 text-[#C4813A]" />
                   {siteConfig.contact.phone}
-                </p>
-                <a
-                  href={siteConfig.contact.whatsapp}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center hover:text-[#C4813A] transition-colors"
-                >
-                  <MessageCircle className="w-4 h-4 mr-2 text-[#C4813A]" />
+                </a>
+                <a href={siteConfig.contact.whatsapp} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-white transition-colors">
+                  <MessageCircle className="w-3.5 h-3.5 text-[#C4813A]" />
                   WhatsApp
                 </a>
-                <p className="flex items-center">
-                  <MapPinned className="w-4 h-4 mr-2 text-[#C4813A]" />
+                <p className="flex items-center gap-2">
+                  <MapPin className="w-3.5 h-3.5 text-[#C4813A]" />
                   22600 Loudéac · Bretagne
                 </p>
               </div>
             </div>
 
             <div>
-              <h4 className="font-bold text-lg mb-4 text-[#C4813A]">Informations</h4>
-              <div className="space-y-2 text-sm text-gray-400">
+              <h4 className="font-bold text-xs uppercase tracking-widest text-[#C4813A] mb-4">Formation</h4>
+              <div className="space-y-1.5 text-sm text-gray-400">
                 <p>Coach en Neuro-Nutrition</p>
                 <p>Formation certifiante École 5.3</p>
                 <p>Organisme certifié Qualiopi</p>
@@ -567,8 +543,8 @@ export default function App() {
             </div>
           </div>
 
-          <div className="border-t border-white/10 pt-8 text-center text-sm text-gray-500">
-            <p>© {new Date().getFullYear()} {siteConfig.businessName} – Tous droits réservés</p>
+          <div className="border-t border-white/10 pt-6 text-center text-xs text-gray-600">
+            © {new Date().getFullYear()} {siteConfig.businessName} – Tous droits réservés
           </div>
         </div>
       </footer>
